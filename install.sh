@@ -12,6 +12,13 @@ set -euo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+if [ "$(uname -s)" != "Darwin" ]; then
+  echo "Este script (install.sh) es para macOS."
+  echo "¿Estás en Windows? Usa en su lugar, desde PowerShell:"
+  echo "    .\\install.ps1"
+  exit 1
+fi
+
 do_profiles() {
   echo "=== Perfiles múltiples de Claude Desktop (claude-fix) ==="
   bash "$HERE/scripts/claude-profiles/install-claude-profiles.sh"
